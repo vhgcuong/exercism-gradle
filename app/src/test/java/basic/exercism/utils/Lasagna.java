@@ -4,7 +4,7 @@ public class Lasagna extends ReflectionProxy {
 
     @Override
     public String getTargetClassName() {
-        return "Lasagna";
+        return "basic.exercism.cookyourlasagna.Lasagna";
     }
 
     public int expectedMinutesInOven() {
