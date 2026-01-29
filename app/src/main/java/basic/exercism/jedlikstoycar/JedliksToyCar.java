@@ -13,18 +13,16 @@ public class JedliksToyCar {
     }
 
     public String batteryDisplay() {
-        return this.battery > 0 
-            ? String.format("Battery at %d%%", this.battery) 
-            : String.format("Battery empty");
+        if (this.battery == 0) {
+            return "Battery empty";
+        }
+        return String.format("Battery at %d%%", this.battery);
     }
 
     public void drive() {
-        if (this.battery > 0) {
+        if (this.battery != 0) {
             this.driven += 20;
             this.battery -= 1;
-        } else {
-            this.battery = 0;
         }
-        
     }
 }
