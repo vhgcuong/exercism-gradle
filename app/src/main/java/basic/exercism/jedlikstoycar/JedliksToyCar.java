@@ -1,19 +1,30 @@
 package basic.exercism.jedlikstoycar;
 
 public class JedliksToyCar {
+    private int driven = 0;
+    private int battery = 100;
+
     public static JedliksToyCar buy() {
-        throw new UnsupportedOperationException("Please implement the (static) JedliksToyCar.buy()  method");
+        return new JedliksToyCar();
     }
 
     public String distanceDisplay() {
-        throw new UnsupportedOperationException("Please implement the JedliksToyCar.distanceDisplay()  method");
+        return String.format("Driven %d meters", this.driven);
     }
 
     public String batteryDisplay() {
-        throw new UnsupportedOperationException("Please implement the JedliksToyCar.batteryDisplay()  method");
+        return this.battery > 0 
+            ? String.format("Battery at %d%%", this.battery) 
+            : String.format("Battery empty");
     }
 
     public void drive() {
-        throw new UnsupportedOperationException("Please implement the JedliksToyCar.drive()  method");
+        if (this.battery > 0) {
+            this.driven += 20;
+            this.battery -= 1;
+        } else {
+            this.battery = 0;
+        }
+        
     }
 }
