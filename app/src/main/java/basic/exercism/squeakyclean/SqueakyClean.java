@@ -2,18 +2,21 @@ package basic.exercism.squeakyclean;
 
 import java.lang.Character;
 
-class SqueakyClean {
-    static String clean(String identifier) {
+public class SqueakyClean {
+    public static String clean(String identifier) {
         final char[] asArr = identifier.toCharArray();
         final StringBuffer result = new StringBuffer();
 
+        boolean isUpcase = false;
         for (char ch: asArr) {
             if (Character.isWhitespace(ch)) {
                 result.append('_');
-                continue;
-            }
-
-            if (Character.isDigit(ch)) {
+            } else if (isUpcase && Character.isLetter(ch)) {
+                result.append(Character.toUpperCase(ch));
+                isUpcase = false;
+            } else if (ch == '-') {
+                isUpcase = true;
+            } else if (Character.isDigit(ch)) {
                 switch (ch) {
                     case '4':
                         result.append('a');
@@ -34,17 +37,12 @@ class SqueakyClean {
                         result.append(ch);
                         break;
                 }
+            } else if (Character.isAlphabetic(ch) || Character.isLetter(ch)) {
+                result.append(ch);
+            } else {
                 continue;
             }
-
-            if (!Character.isAlphabetic(ch)) {
-                if (!Character.isLetter(ch)) {
-                    continue;
-                }
-            }
-            result.append(ch);
         }
-
 
         return result.toString();
     }
