@@ -1,50 +1,27 @@
 package basic.exercism.squeakyclean;
 
-import java.lang.Character;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class SqueakyClean {
     public static String clean(String identifier) {
-        final char[] asArr = identifier.toCharArray();
-        final StringBuffer result = new StringBuffer();
-
-        boolean isUpcase = false;
-        for (char ch: asArr) {
-            if (Character.isWhitespace(ch)) {
-                result.append('_');
-            } else if (isUpcase && Character.isLetter(ch)) {
-                result.append(Character.toUpperCase(ch));
-                isUpcase = false;
-            } else if (ch == '-') {
-                isUpcase = true;
-            } else if (Character.isDigit(ch)) {
-                switch (ch) {
-                    case '4':
-                        result.append('a');
-                        break;
-                    case '3':
-                        result.append('e');
-                        break;
-                    case '0':
-                        result.append('o');
-                        break;
-                    case '1':
-                        result.append('l');
-                        break;
-                    case '7':
-                        result.append('t');
-                        break;
-                    default:
-                        result.append(ch);
-                        break;
-                }
-            } else if (Character.isAlphabetic(ch) || Character.isLetter(ch)) {
-                result.append(ch);
-            } else {
-                continue;
-            }
+        String step1 = identifier.replaceAll("\\s", "_");
+        Matcher matcher = Pattern.compile("-(\\w)").matcher(step1);
+        StringBuffer sb = new StringBuffer();
+        while (matcher.find()) {
+            matcher.appendReplacement(sb, matcher.group(1).toUpperCase());
         }
-
-        return result.toString();
+        matcher.appendTail(sb);
+        String step2 = sb.toString();
+        String step3 = step2.replaceAll("4", "a")
+                            .replaceAll("3", "e")
+                            .replaceAll("0", "o")
+                            .replaceAll("1", "l")
+                            .replaceAll("7", "t");
+        String step4 = step3.replaceAll("[^a-zA-Z_]", "");
+        
+        return step4;
     }
 }
+
 
