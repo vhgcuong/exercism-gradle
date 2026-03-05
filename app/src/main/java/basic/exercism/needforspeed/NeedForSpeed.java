@@ -1,8 +1,12 @@
 package basic.exercism.needforspeed;
 
-public class NeedForSpeed {
+class NeedForSpeed {
+    private int speed;
+    private int batteryDrain;
+    
     NeedForSpeed(int speed, int batteryDrain) {
-        throw new UnsupportedOperationException("Please implement the NeedForSpeed constructor");
+        this.speed = speed;
+        this.batteryDrain = batteryDrain;
     }
 
     public boolean batteryDrained() {
@@ -23,11 +27,14 @@ public class NeedForSpeed {
 }
 
 class RaceTrack {
+    private int distance;
+    
     RaceTrack(int distance) {
-        throw new UnsupportedOperationException("Please implement the RaceTrack constructor");
+        this.distance = distance;
     }
 
     public boolean canFinishRace(NeedForSpeed car) {
         throw new UnsupportedOperationException("Please implement the RaceTrack.canFinishRace() method");
     }
 }
+
