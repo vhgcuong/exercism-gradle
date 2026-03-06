@@ -2,7 +2,7 @@ package basic.exercism.needforspeed;
 
 public class NeedForSpeed {
 
-    public int speed, batteryDrain;
+    private int speed, batteryDrain;
     private int distance = 0;
     private int battery = 100;
     
@@ -24,6 +24,10 @@ public class NeedForSpeed {
             this.battery -= this.batteryDrain;
             this.distance += this.speed;
         }
+    }
+
+    public int maxRace() {
+        return (100 / this.batteryDrain) * speed;
     }
 
     public static NeedForSpeed nitro() {

@@ -8,6 +8,6 @@ public class RaceTrack {
     }
 
     public boolean canFinishRace(NeedForSpeed car) {
-        return car.speed * (100 / car.batteryDrain) >= this.distance;
+        return car.maxRace() >= this.distance;
     }
 }
