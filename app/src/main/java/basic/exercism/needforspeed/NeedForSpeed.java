@@ -1,10 +1,11 @@
 package basic.exercism.needforspeed;
 
 public class NeedForSpeed {
+    private static final int MAX_BATTERY = 100;
 
-    private int speed, batteryDrain;
+    private final int speed, batteryDrain;
     private int distance = 0;
-    private int battery = 100;
+    private int battery = MAX_BATTERY;
     
     public NeedForSpeed(int speed, int batteryDrain) {
         this.speed = speed;
@@ -12,22 +13,24 @@ public class NeedForSpeed {
     }
 
     public boolean batteryDrained() {
-        return this.battery < this.batteryDrain;
+        return battery < batteryDrain;
     }
 
     public int distanceDriven() {
-        return this.distance;
+        return distance;
     }
 
     public void drive() {
-        if (!this.batteryDrained()) {
-            this.battery -= this.batteryDrain;
-            this.distance += this.speed;
+        if (batteryDrained()) {
+            return;
         }
+
+        battery -= batteryDrain;
+        distance += speed;
     }
 
     public int maxDistance() {
-        return (100 / this.batteryDrain) * speed;
+        return (MAX_BATTERY / batteryDrain) * speed;
     }
 
     public static NeedForSpeed nitro() {
