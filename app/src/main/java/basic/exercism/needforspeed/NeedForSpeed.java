@@ -26,7 +26,7 @@ public class NeedForSpeed {
         }
     }
 
-    public int maxRace() {
+    public int maxDistance() {
         return (100 / this.batteryDrain) * speed;
     }
 
