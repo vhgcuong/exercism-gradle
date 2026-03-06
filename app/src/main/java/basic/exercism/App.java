@@ -4,6 +4,7 @@
 package basic.exercism;
 
 import basic.exercism.squeakyclean.*;
+import basic.exercism.needforspeed.*;
 
 public class App {
     public String getGreeting() {
@@ -14,5 +15,11 @@ public class App {
         System.out.println(new App().getGreeting());
 
         SqueakyClean.clean("__abc-X--429-skql");
+
+        var car = new NeedForSpeed(1, 99);
+        car.drive();
+
+        car.batteryDrained();
+        car.distanceDriven();
     }
 }
