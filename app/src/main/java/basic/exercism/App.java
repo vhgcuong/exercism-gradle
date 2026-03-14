@@ -3,23 +3,37 @@
  */
 package basic.exercism;
 
-import basic.exercism.squeakyclean.*;
-import basic.exercism.needforspeed.*;
+import java.util.ArrayList;
+import java.util.List;
+
+import basic.exercism.remotecontrolcompetition.ProductionRemoteControlCar;
+import basic.exercism.remotecontrolcompetition.TestTrack;
 
 public class App {
+
     public String getGreeting() {
         return "Hello World!";
     }
 
+    
     public static void main(String[] args) {
-        System.out.println(new App().getGreeting());
+        System.out.println("Run exercism");
 
-        SqueakyClean.clean("__abc-X--429-skql");
+        List<ProductionRemoteControlCar> unsortedCars = new ArrayList<>() {
+            {
+                add(getCarWithVictories(0));
+                add(getCarWithVictories(2));
+            }
+        };
+        List<ProductionRemoteControlCar> rankings = TestTrack.getRankedCars(unsortedCars);
+        rankings.stream().forEach(item -> {
+            System.out.println(item.getNumberOfVictories());
+        });
+    }
 
-        var car = new NeedForSpeed(1, 99);
-        car.drive();
-
-        car.batteryDrained();
-        car.distanceDriven();
+    private static ProductionRemoteControlCar getCarWithVictories(int numberOfVictories) {
+        ProductionRemoteControlCar prc1 = new ProductionRemoteControlCar();
+        prc1.setNumberOfVictories(numberOfVictories);
+        return prc1;
     }
 }

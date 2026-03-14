@@ -1,20 +1,28 @@
 package basic.exercism.remotecontrolcompetition;
 
-public class ProductionRemoteControlCar implements RemoteControlCar{
+public class ProductionRemoteControlCar implements RemoteControlCar, Comparable<ProductionRemoteControlCar> {
+
+    private int distanceTravelled = 0;
+    private int numberOfVictories;
 
     public void drive() {
-        throw new UnsupportedOperationException("Please implement the ProductionRemoteControlCar.drive() method");
+        this.distanceTravelled += 10;
     }
 
     public int getDistanceTravelled() {
-        throw new UnsupportedOperationException("Please implement the ProductionRemoteControlCar.getDistanceTravelled() method");
+        return distanceTravelled;
     }
 
     public int getNumberOfVictories() {
-        throw new UnsupportedOperationException("Please implement the ProductionRemoteControlCar.getNumberOfVictories() method");
+        return numberOfVictories;
     }
 
     public void setNumberOfVictories(int numberOfVictories) {
-        throw new UnsupportedOperationException("Please implement the ProductionRemoteControlCar.setNumberOfVictories() method");
+        this.numberOfVictories = numberOfVictories;
+    }
+
+    @Override
+    public int compareTo(ProductionRemoteControlCar item) {
+        return Integer.compare(item.getNumberOfVictories(), numberOfVictories);
     }
 }
