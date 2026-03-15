@@ -4,16 +4,13 @@ public class CarsAssemble {
     private final static int CARS_EACH_HOUR = 221;
     
     public double productionRatePerHour(int speed) {
-        double rate = 0;
-        if (speed > 0 && speed <= 4) {
-            rate = 1;
-        } else if (speed <= 8) {
-            rate = 0.9;
-        } else if (speed <= 9) {
-            rate = 0.8;
-        } else if (speed == 10) {
-            rate = 0.77;
-        }
+        final double rate = switch (speed) {
+            case 1, 2, 3, 4 -> 1;
+            case 5, 6, 7, 8 -> 0.9;
+            case 9 -> 0.8;
+            case 10 -> 0.77;
+            default -> 0;
+        };
 
         return rate * speed * CARS_EACH_HOUR;
     }
