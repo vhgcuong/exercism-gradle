@@ -3,11 +3,7 @@
  */
 package basic.exercism;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import basic.exercism.remotecontrolcompetition.ProductionRemoteControlCar;
-import basic.exercism.remotecontrolcompetition.TestTrack;
+import basic.exercism.loglevels.LogLevels;
 
 public class App {
 
@@ -19,21 +15,12 @@ public class App {
     public static void main(String[] args) {
         System.out.println("Run exercism");
 
-        List<ProductionRemoteControlCar> unsortedCars = new ArrayList<>() {
-            {
-                add(getCarWithVictories(0));
-                add(getCarWithVictories(2));
-            }
-        };
-        List<ProductionRemoteControlCar> rankings = TestTrack.getRankedCars(unsortedCars);
-        rankings.stream().forEach(item -> {
-            System.out.println(item.getNumberOfVictories());
-        });
-    }
+        String message = "[WARNING]:  Disk almost full";
+        System.out.println(LogLevels.message(message));
 
-    private static ProductionRemoteControlCar getCarWithVictories(int numberOfVictories) {
-        ProductionRemoteControlCar prc1 = new ProductionRemoteControlCar();
-        prc1.setNumberOfVictories(numberOfVictories);
-        return prc1;
+        String message2 = "[WARNING]:   \\tTimezone not set  \\r\\n";
+        System.out.println(LogLevels.message(message2));
+        System.out.println(LogLevels.logLevel(message2));
+        System.out.println(LogLevels.reformat(message2));
     }
 }

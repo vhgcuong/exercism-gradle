@@ -1,16 +1,31 @@
 package basic.exercism.loglevels;
 
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 public class LogLevels {
     
     public static String message(String logLine) {
-        throw new UnsupportedOperationException("Please implement the (static) LogLevels.message() method");
+        Matcher m = Pattern.compile("\\[(\\w+)]\\:(.+)").matcher(logLine);
+        if (m.find()) {
+            return m.group(2).trim();
+        }
+        return "";
     }
 
     public static String logLevel(String logLine) {
-        throw new UnsupportedOperationException("Please implement the (static) LogLevels.logLevel() method");
+        Matcher m = Pattern.compile("\\[(\\w+)]\\:(.+)").matcher(logLine);
+        if (m.find()) {
+            return m.group(1).toLowerCase();
+        }
+        return "";
     }
 
     public static String reformat(String logLine) {
-        throw new UnsupportedOperationException("Please implement the (static) LogLevels.reformat() method");
+        Matcher m = Pattern.compile("\\[(\\w+)]\\:(.+)").matcher(logLine);
+        if (m.find()) {
+            return m.group(2).trim() + " (" + m.group(1).toLowerCase() + ")";
+        }
+        return "";
     }
 }
